@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Change Log - Solr OCR Highlighting Plugin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Change Log";
+    var mkdocs_page_input_path = "changes.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Solr OCR Highlighting Plugin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Introduction</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../indexing/">Indexing</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../query/">Querying</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../example/">Example Setup</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../formats/">Supported Formats</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Change Log</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#032-tbd">0.3.2 (tbd.)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#031-2019-07-26">0.3.1 (2019-07-26)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#03-2019-07-25">0.3 (2019-07-25)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#02-2019-07-16">0.2 (2019-07-16)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#01-2019-06-06">0.1 (2019-06-06)</a></li>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Solr OCR Highlighting Plugin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Change Log</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/dbmdz/solr-ocrhighlighting/edit/master/docs/changes.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="032-tbd">0.3.2 (tbd.)</h2>
+<ul>
+<li>Fix compatibility with Solr/Lucene 8.4</li>
+<li>Fix compatibility with Solr/Lucene 7.6</li>
+<li>Add new <code>pages</code> key to snippet response with page dimensions</li>
+<li>hocr: Add support for retrieving page identifier from <code>x_source</code> an <code>ppageno</code> properties</li>
+<li>hocr: Strip out title tag during indexing and highlighting</li>
+<li>Improve performance when parsing ASCII-only input documents</li>
+<li>Log warnings during source pointer parsing</li>
+<li>Filter out empty files during indexing</li>
+</ul>
+<h2 id="031-2019-07-26">0.3.1 (2019-07-26)</h2>
+<p>This is patch release that fixes compatibility with Solr/Lucene 8.2.</p>
+<h2 id="03-2019-07-25">0.3 (2019-07-25)</h2>
+<p><a href="https://github.com/dbmdz/solr-ocrhighlighting/releases/tag/0.3">GitHub Release</a></p>
+<p>This release brings some sweeping changes across the codebase, all aimed at making
+the plugin much simpler to use and less complicated to maintain. However, this also
+means <strong>a lot of breaking changes</strong>. It&rsquo;s best to go through
+<a href="https://dbmdz.github.com/solr-ocrhighlighting">the documentation</a> (which has been
+simplified and was largely rewritten) again and see what changes you need to apply
+to your setup.</p>
+<ul>
+<li><strong>Specifying path resolving is no longer neccessary.</strong> You now pass a pointer to one
+  or more files (or regions thereof) directly in the index document. The pointer
+  will be stored with the document and used to locate the input file(s) during
+  highlighting. Refer to the <a href="https://dbmdz.github.com/solr-ocrhighlighting/indexing.md">documentation</a>
+  for more details. This should also <strong>increase indexing performance</strong> and <strong>decrease
+  the memory requirements</strong>, since at no point does the complete OCR document need
+  to be held in memory.</li>
+<li><strong><code>hl.weightMatches</code> now works with UTF8</strong>. You no longer need to ASCII-encode
+  your OCR files to be able to use Solr&rsquo;s superior highlighting approach. Due to the
+  first change, the plugin now takes care of mapping UTF8 byte-offsets to character
+  offsets by itself. This also means all code related to storing byte offsets in
+  payloads is gone.</li>
+<li><strong>Specifying the OCR format is no longer neccessary.</strong> The plugin now offers a
+  single <code>OcrFormatCharFilter</code> that will auto-detect the OCR format used for a given
+  document and select the correct analysis chain. This means that <strong>using multiple
+  OCR formats for the same field is now possible!</strong></li>
+<li><strong>Performance improvements.</strong> Some optimizations were done to the way the plugin
+  seeks through the OCR files. You should see a substantial performance improvement
+  for documents with a low density of multi-byte codepoints, especially English.
+  Also included is a new <code>hl.ocr.maxPassages</code> parameter to control how many passages
+  are looked at for building the response, which can have an enormous impact on
+  performance.</li>
+</ul>
+<p><strong>Major Breaking Changes</strong>:</p>
+<ul>
+<li><code>HighlightComponent</code> is now called <code>OcrHighlightComponent</code> for more clarity</li>
+<li>OCR fields to be highlighted now need to be passed with the <code>hl.ocr.fl</code> parameter</li>
+<li>Auto-detection of highlightable fields is no longer possible with the standard
+  highlighter, fields to be highlighted need to be passed explicitely with the
+  <code>hl.fl</code> parameter</li>
+<li>In the order of components, the OCR highlighting component needs to come <em>before</em>
+  the standard highlighter to avoid conflicts.</li>
+</ul>
+<h2 id="02-2019-07-16">0.2 (2019-07-16)</h2>
+<p><a href="https://github.com/dbmdz/solr-ocrhighlighting/releases/tag/0.2">GitHub Release</a></p>
+<ul>
+<li><strong>Breaking Change</strong>: ALTO and hOCR now have custom <code>CharFilter</code> implementations
+  that should be used instead of <code>HTMLStripCharFilterFactory</code>.
+  Refer to <a href="https://dbmdz.github.io/solr-ocrhighlighting/formats/">the documentation</a>
+  for more details.</li>
+<li><strong>Feature:</strong> Resolve Hyphenation at indexing time for all supported formats. If a
+  word is broken across multiple lines, it will be indexed as the dehyphenated form.
+  During highlighting, the parts on both lines will be highlighted appropriately.</li>
+<li><strong>Fix</strong> calculation of passages with matches spanning multiple lines, in previous
+  versions some passages would be too small</li>
+<li><strong>Fix</strong> <code>hl.fl</code> parameter handling, a bug in 0.1 made this parameter not have any effect</li>
+</ul>
+<h2 id="01-2019-06-06">0.1 (2019-06-06)</h2>
+<p><a href="https://github.com/dbmdz/solr-ocrhighlighting/releases/tag/0.1">GitHub Release</a></p>
+<ul>
+<li>Initial Release</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../formats/" class="btn btn-neutral" title="Supported Formats"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/dbmdz/solr-ocrhighlighting/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../formats/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
