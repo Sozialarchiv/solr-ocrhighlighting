@@ -129,8 +129,8 @@ block types to these general types:</p>
   at query time)</li>
 <li><strong>Word</strong>: <em>required</em></li>
 </ul>
-<p>These block types can be used in the <a href="../query/#params"><code>hl.ocr.limitBlock</code> and <code>hl.ocr.contextBlock</code>
-query parameters</a> to control how snippets are generated.</p>
+<p>These block types can be used in the <a href="../query/#available-highlighting-parameters"><code>hl.ocr.limitBlock</code> and <code>hl.ocr.contextBlock</code>
+query parameters</a> to control how the plugin generates snippets.</p>
 <h2 id="hocr">hOCR</h2>
 <p><strong>Block type mapping:</strong></p>
 <table>
@@ -226,9 +226,9 @@ on the client side to convert to pixel coordinates.</p>
 </table>
 <h2 id="miniocr">MiniOCR</h2>
 <p>This plugin also includes support for a custom non-standard OCR format that we dubbed <em>MiniOCR</em>.
-This format is intended for use cases where reusing the existing OCR files is not possible or
-practical. In these cases, minimizing the storage requirements for the derived OCR files is important,
-which is why we defined this minimalistic format.</p>
+You should use this format when reusing the existing OCR files is not possible or practical. In these cases,
+minimizing the storage requirements for the derived OCR files is important, which is why we defined this
+minimalistic format.</p>
 <p>A basic example looks like this:</p>
 <pre><code class="xml">&lt;ocr&gt;
   &lt;p id=&quot;page_identifier&quot;&gt;

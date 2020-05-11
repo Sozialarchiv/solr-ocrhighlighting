@@ -128,38 +128,44 @@
 <p>Highlighting based on locally stored files can take a long time, depending on the environment. This section gives some
 hints on potential knobs to tune to improve the performance.</p>
 <h2 id="performance-analysis">Performance Analysis</h2>
-<p>Before you start tuning the plugin, it is important to spend some time on analyzing the nature of the problems.
-- Check Solr queries with <code>debugQuery=true</code>: How much of the response time is actually spent in the OCR highlighting
-  component?
-- On the operating system level (if you&rsquo;re on a Linux system), use <a href="https://github.com/iovisor/bcc">BCC Tols</a>,
+<p>Before you start tuning the plugin, it is important to spend some time on analyzing the nature of the problems:</p>
+<ul>
+<li>Check Solr queries with <code>debug=timing</code>: How much of the response time is actually spent in the OCR highlighting
+  component?</li>
+<li>On the operating system level (if you&rsquo;re on a Linux system), use <a href="https://github.com/iovisor/bcc">BCC Tools</a>,
   especially <code>{nfs/xfs/ext/...}slower</code> and <code>{nfs/xfs/ext/...}dist</code> to check if the performance issues are due to I/O
-  latency.</p>
+  latency.</li>
+</ul>
 <h2 id="storage-layer">Storage Layer</h2>
-<p>A lot of time in the plugin is spent on randomly reading small sections of the target files from disk. This means that
-the performance characteristics of the underlying storage system have a huge effect on the performance of the plugin.
-Important factors include:
-    * <em>Random Read Latency</em>: What is the time required to seek to a random location and read a small chunk?
-    * <em>Number of possible parallel reads</em> (see below): Does the storage layer support more than one active reader?</p>
+<p>The plugin spends a lot of time on randomly reading small sections of the target files from disk. This means that
+the performance characteristics of the underlying storage system have a huge effect on the performance of the plugin.</p>
+<p>Important factors include:</p>
+<ul>
+<li><em>Random Read Latency</em>: What is the time required to seek to a random location and read a small chunk?</li>
+<li><em>Number of possible parallel reads</em> (see below): Does the storage layer support more than one active reader?</li>
+</ul>
 <p>Generally speaking, local storage is better than remote storage (like NFS or CIFS), due to the network latency, and
-flash-based storage is better than harddisk-based storage, due to the lower random read latency. A RAID setup is
+flash-based storage is better than disk-based storage, due to the lower random read latency. A RAID setup is
 preferred over a JBOD setup, due to the potential for parallel reads.</p>
 <h2 id="plugin-configuration">Plugin configuration</h2>
-<p>The plugin offers the possibility to perform a concurrent read-ahead of highlighting target files. This will perform
-&ldquo;dummy&rdquo; reads on a multiple parallel threads, with the intent to fill the operating system&rsquo;s page cache with the contents
+<p>The plugin offers the possibility to perform a <strong>concurrent read-ahead of highlighting target files</strong>. This will perform
+&ldquo;dummy&rdquo; reads on multiple parallel threads, with the intent to fill the operating system&rsquo;s page cache with the contents
 of the highlighting targets, so that the actual highlighting process is performed on data read from the cache (which
 resides in main memory). This is mainly useful for storage layers that benefit from parallel reads, since the highlighting
 process is strongly sequential and performing the read-ahead concurrently can reduce latency.</p>
 <p>To enable it, add the <code>enablePreload=true</code> attribute on the OCR highlighting component in your core&rsquo;s <code>solrconfig.xml</code>.
 It is important to accompany this with benchmarking and monitoring, the available settings should be tuned to the
-environment:
-- <code>preloadReadSize</code>: Size in bytes of read-ahead block reads, should be aligned with file system block size
-  (or <code>rsize</code> for NFS file systems). Defaults to <code>32768</code>
-- <code>preloadConcurrency</code>: Number of threads to perform read-ahead. Optimal settings have to be determined via
-  experimentation. Defaults to <code>8</code>.</p>
+environment:</p>
+<ul>
+<li><code>preloadReadSize</code>: Size in bytes of read-ahead block reads, should be aligned with file system block size
+  (or <code>rsize</code> for NFS file systems). Defaults to <code>32768</code>.</li>
+<li><code>preloadConcurrency</code>: Number of threads to perform read-ahead. Optimal settings have to be determined via
+  experimentation. Defaults to <code>8</code>.</li>
+</ul>
 <p>This approach relies on the OS-level page cache, so make sure you have enough spare RAM available on your machine to
 actually benefit from this! Use BCC&rsquo;s <code>*slower</code> tools to verify that it&rsquo;s a <code>solr-ocrhighlight</code> thread that performs
 most of the reads and not the actual query thread (<code>qtp....</code>). If you run the same query twice, you shouldn&rsquo;t see a lot
-reads from either the <code>qtp...</code> or <code>solr-ocrhlighight</code> threads.</p>
+of reads from either the <code>qtp...</code> or <code>solr-ocrhlighight</code> threads on  the second run.</p>
 <p>Example configuration tuned for remote NFS storage mounted with <code>rsize=65536</code>:</p>
 <pre><code class="xml">&lt;searchComponent class=&quot;de.digitalcollections.solrocr.solr.OcrHighlightComponent&quot;
                  name=&quot;ocrHighlight&quot; enablePreload=&quot;true&quot; preloadReadSize=&quot;65536&quot; preloadConcurrency=&quot;8&quot;/&gt;
@@ -169,7 +175,7 @@ reads from either the <code>qtp...</code> or <code>solr-ocrhlighight</code> thre
 <p>Another option to influence the performance of the plugin is to tune some runtime options for highlighting.
 For any of these, refer to the <a href="https://dbmdz.github.io/solr-ocrhighlighting/query/">Querying section</a> for more details.</p>
 <ul>
-<li>Tune the number of candidate passages for ranking with <code>hl.ocr.maxPassages</code>, wich defaults to <code>100</code>. Lowering this is
+<li>Tune the number of candidate passages for ranking with <code>hl.ocr.maxPassages</code>, which defaults to <code>100</code>. Lowering this is
   better for performance, but means that the resulting snippets might not be the most relevant in the document.</li>
 <li>Change the limit (<code>hl.ocr.limitBlock</code>) and/or context block types (<code>hl.ocr.contextBlock</code>) to something lower in the
   block hierarchy to reduce the amount of reads in the OCR files. Another knob to tune is the number of context blocks
